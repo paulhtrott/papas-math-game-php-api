@@ -1,8 +1,6 @@
 <?php
   declare(strict_types=1);
 
-  require __DIR__ . '/../../../../src/api/v1/papas_math_game/Game.php';
-
   use PHPUnit\Framework\TestCase;
 
   final class GameTest extends TestCase {

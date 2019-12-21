@@ -16,6 +16,11 @@ brew install composer
 composer i
 ```
 
+#### Update Composer Autoloader to autoload Classes
+```sh
+composer dump-autoload -o
+```
+
 #### Run Tests
 ```sh
 ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/
