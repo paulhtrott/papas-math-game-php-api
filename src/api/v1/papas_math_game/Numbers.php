@@ -1,10 +1,10 @@
 <?php
-declare(strict_types=1);
+  declare(strict_types=1);
 
   include_once '../../../models/Game.php';
 
   // Setup game from game settings.
-  $game = new Game('addition', 3, 5);
+  $game = new Game('addition', 5, 15);
 
   $game->calculateValues();
 

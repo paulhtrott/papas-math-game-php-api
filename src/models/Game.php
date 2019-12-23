@@ -16,6 +16,9 @@
     public $calculatedAnswers;
     public $valuesHash;
 
+    // @param [string] operation The type of calculation. For example, 'addition'.
+    // @param [int] howManyNumbers The quantity of random numbers to use.
+    // @param [int] maxNumber Max number to use for calculations.
     public function __construct(string $operation, int $howManyNumbers, int $maxNumber) {
       $this->operation = $operation;
       $this->howManyNumbers = $howManyNumbers;
@@ -34,19 +37,51 @@
     public function calculateValues() {
       // Fill randomNumbers with howManyNumbers of random numbers.
       for($numberCount = 1; $numberCount <= $this->howManyNumbers; $numberCount++) {
-        array_push($this->randomNumbers, mt_rand(1, $this->maxNumber));
+        $randomNumber = mt_rand(1, $this->maxNumber);
+
+        // Make sure random is unique before storing.
+        while (in_array($randomNumber, $this->randomNumbers)) {
+          $randomNumber = mt_rand(1, $this->maxNumber);
+        }
+
+        // Store random number.
+        array_push($this->randomNumbers, $randomNumber);
       }
 
+      // Calculate the numbers for the game.
       $this->calculateAnswers(array(), 0, 0);
+
+      // Generate numbers for users to use.
+      $this->generateUserNumbers();
+
+      // Sort the random numbers used.
+      sort($this->randomNumbers);
 
       // Gather game values for response.
       $this->valuesHash = array(
-        "numbers_to_choose_from" => array(),
-        "array_of_numbers" => $this->randomNumbers,
-        "combinations_used" => $this->combinationsUsed,
-        "calculated_values" => $this->calculatedAnswers,
-        "message" => "User needs to calculate..."
+        "userNumbers" => $this->userNumbers,
+        "randomNumbers" => $this->randomNumbers,
+        "combinationsUsed" => $this->combinationsUsed,
+        "calculatedAnswers" => $this->calculatedAnswers,
+        "message" => $this->userMessage
       );
+    }
+
+    private function generateUserNumbers() {
+      $numbers = $this->randomNumbers;
+
+      sort($numbers);
+
+      $lowest = $numbers[0] - mt_rand(1, 10);
+
+      $lowestNumber = $lowest < 1 ? 1 : $lowest;
+
+      $highestNumber  = $numbers[sizeof($numbers) - 1] + mt_rand(1, 10);
+
+      $this->userMessage = "Figure out which " . sizeof($numbers) . " numbers were used to get the following answers. Options are from {$lowestNumber} to {$highestNumber}.";
+
+      $this->userNumbers = range($lowestNumber, $highestNumber);
+
     }
 
     private function calculateAnswers($currentCollection, $index, $accumulation) {
