@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/paulhtrott/papas-math-game-php-api.svg?branch=master)](https://travis-ci.org/paulhtrott/papas-math-game-php-api)
+
 # PHP Application for Papas Math Game Api.
 
 ### Run local server
