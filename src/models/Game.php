@@ -19,13 +19,11 @@
     // @param [string] operation The type of calculation. For example, 'addition'.
     // @param [int] howManyNumbers The quantity of random numbers to use.
     // @param [int] maxNumber Max number to use for calculations.
-    public function __construct(string $operation, int $howManyNumbers, int $maxNumber) {
+    public function __construct(string $operation, array $randomNumbers) {
       $this->operation = $operation;
-      $this->howManyNumbers = $howManyNumbers;
-      $this->maxNumber = $maxNumber;
       $this->valuesHash = array();
       $this->userNumbers = array();
-      $this->randomNumbers = array();
+      $this->randomNumbers = $randomNumbers;
       $this->combinationsUsed = array();
       $this->calculatedAnswers = array();
       $this->operationSymbol = array(
@@ -35,19 +33,6 @@
     }
 
     public function calculateValues() {
-      // Fill randomNumbers with howManyNumbers of random numbers.
-      for($numberCount = 1; $numberCount <= $this->howManyNumbers; $numberCount++) {
-        $randomNumber = mt_rand(1, $this->maxNumber);
-
-        // Make sure random is unique before storing.
-        while (in_array($randomNumber, $this->randomNumbers)) {
-          $randomNumber = mt_rand(1, $this->maxNumber);
-        }
-
-        // Store random number.
-        array_push($this->randomNumbers, $randomNumber);
-      }
-
       // Calculate the numbers for the game.
       $this->calculateAnswers(array(), 0, 0);
 
