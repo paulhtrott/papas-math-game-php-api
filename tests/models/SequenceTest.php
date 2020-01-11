@@ -22,7 +22,7 @@
 
       $sequence->calculateSequence();
 
-      $this->assertEquals($sequence->valuesHash['game']['calculatedAnswers'], [26, 19, 21, 14, 15, 8, 10, 23, 16, 18, 12]);
+      $this->assertEquals($sequence->valuesHash['game']['calculatedAnswers'], [8, 10, 12, 14, 15, 16, 18, 19, 21, 23, 26]);
       $this->assertEquals($sequence->valuesHash['game']['randomNumbers'], [3, 5, 7, 11]);
       $this->assertEquals($sequence->sequenceAnswers, [[14,15,16]]);
       $this->assertEquals($sequence->valuesHash['sequenceCollection'], [[8], [10], [12], [14, 15, 16], [18, 19], [21], [23], [26]]);
