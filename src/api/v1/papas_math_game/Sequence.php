@@ -1,9 +1,9 @@
 <?php
   declare(strict_types=1);
 
-  include_once '../../../models/Game.php';
-  include_once '../../../models/Sequence.php';
-  include_once '../../../models/RandomNumbers.php';
+  include_once __DIR__ . '/../../../models/Game.php';
+  include_once __DIR__ . '/../../../models/Sequence.php';
+  include_once __DIR__ . '/../../../models/RandomNumbers.php';
 
   // Generate random numbers.
   $randomNumbers = new RandomNumbers(5, 40);

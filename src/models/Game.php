@@ -2,7 +2,6 @@
   declare(strict_types=1);
 
   // $operation [String] Type of calculation to do, ie: 'addition' | 'multiplication'.
-  // $userNumbers [Array] Numbers to be given to user to guess with.
   // $randomNumbers [Array] Numbers used to calculate answers.
   final class Game {
     public $operation;
